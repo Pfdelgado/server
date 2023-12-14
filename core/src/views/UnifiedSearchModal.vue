@@ -1,7 +1,6 @@
 <template>
 	<NcModal id="unified-search"
 		ref="unifiedSearchModal"
-		:name="t('core', 'Unified search')"
 		:show.sync="internalIsVisible"
 		:clear-view-delay="0"
 		@close="closeModal">
