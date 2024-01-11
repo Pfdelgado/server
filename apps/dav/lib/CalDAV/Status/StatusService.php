@@ -102,8 +102,7 @@ class StatusService {
 			if(isset($component['DTSTART']) && $userStatusTimestamp !== null) {
 				/** @var DateTimeImmutable $dateTime */
 				$dateTime = $component['DTSTART'][0];
-				$timestamp = $dateTime->getTimestamp();
-				if($userStatusTimestamp > $timestamp) {
+				if($dateTime instanceof DateTimeImmutable && $userStatusTimestamp > $dateTime->getTimestamp()) {
 					return false;
 				}
 			}
