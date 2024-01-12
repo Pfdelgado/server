@@ -257,15 +257,13 @@ export default {
 						margin-right: 10px;
 					}
 
-					img,
-					svg {
+					img {
 						filter: var(--background-invert-if-dark);
 					}
 
 					&:active:not(:focus-visible),
 					&.active:not(:focus-visible) {
-						img,
-						svg {
+						img {
 							filter: var(--primary-invert-if-dark);
 						}
 					}
