@@ -130,7 +130,6 @@ class CheckSetupControllerTest extends TestCase {
 			])
 			->setMethods([
 				'getLastCronInfo',
-				'getSuggestedOverwriteCliURL',
 				'getCurlVersion',
 				'isPhpOutdated',
 				'isPHPMailerUsed',
@@ -173,10 +172,6 @@ class CheckSetupControllerTest extends TestCase {
 			->method('getHeader');
 		$this->clientService->expects($this->never())
 			->method('newClient');
-		$this->checkSetupController
-			->expects($this->once())
-			->method('getSuggestedOverwriteCliURL')
-			->willReturn('');
 		$this->checkSetupController
 			->expects($this->once())
 			->method('getLastCronInfo')
