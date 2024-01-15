@@ -573,7 +573,13 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	 * @return boolean true if $remoteAddress matches any entry in $trustedProxies, false otherwise
 	 */
 	protected function isTrustedProxy($trustedProxies, $remoteAddress) {
-		return IpUtils::checkIp($remoteAddress, $trustedProxies);
+		try {
+			return IpUtils::checkIp($remoteAddress, $trustedProxies);
+		} catch (\Throwable) {
+			// We can not log here as the logger is using `getRemoteAddress` which uses the function, so we would have a cyclic dependency
+			// Reaching this line means `trustedProxies` is in invalid format.
+			return false;
+		}
 	}
 
 	/**
