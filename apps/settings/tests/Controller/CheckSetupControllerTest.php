@@ -221,7 +221,6 @@ class CheckSetupControllerTest extends TestCase {
 		$expected = new DataResponse(
 			[
 				'reverseProxyDocs' => 'reverse-proxy-doc-link',
-				'isCorrectMemcachedPHPModuleInstalled' => true,
 				'isSettimelimitAvailable' => true,
 				'areWebauthnExtensionsEnabled' => false,
 				'isMysqlUsedWithoutUTF8MB4' => false,
