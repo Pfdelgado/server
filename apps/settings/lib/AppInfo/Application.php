@@ -66,6 +66,7 @@ use OCA\Settings\SetupChecks\InternetConnectivity;
 use OCA\Settings\SetupChecks\LegacySSEKeyFormat;
 use OCA\Settings\SetupChecks\MaintenanceWindowStart;
 use OCA\Settings\SetupChecks\MemcacheConfigured;
+use OCA\Settings\SetupChecks\MysqlUnicodeSupport;
 use OCA\Settings\SetupChecks\OverwriteCliUrl;
 use OCA\Settings\SetupChecks\PhpDefaultCharset;
 use OCA\Settings\SetupChecks\PhpDisabledFunctions;
@@ -188,6 +189,7 @@ class Application extends App implements IBootstrap {
 		$context->registerSetupCheck(LegacySSEKeyFormat::class);
 		$context->registerSetupCheck(MaintenanceWindowStart::class);
 		$context->registerSetupCheck(MemcacheConfigured::class);
+		$context->registerSetupCheck(MysqlUnicodeSupport::class);
 		$context->registerSetupCheck(OverwriteCliUrl::class);
 		$context->registerSetupCheck(PhpDefaultCharset::class);
 		$context->registerSetupCheck(PhpDisabledFunctions::class);
