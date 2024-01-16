@@ -126,7 +126,6 @@ class CheckSetupControllerTest extends TestCase {
 				'getCurlVersion',
 				'isPhpOutdated',
 				'isPHPMailerUsed',
-				'areWebauthnExtensionsEnabled',
 				'isMysqlUsedWithoutUTF8MB4',
 				'isEnoughTempSpaceAvailableIfS3PrimaryStorageIsUsed',
 			])->getMock();
@@ -174,11 +173,6 @@ class CheckSetupControllerTest extends TestCase {
 
 		$this->checkSetupController
 			->expects($this->once())
-			->method('areWebauthnExtensionsEnabled')
-			->willReturn(false);
-
-		$this->checkSetupController
-			->expects($this->once())
 			->method('isMysqlUsedWithoutUTF8MB4')
 			->willReturn(false);
 
@@ -221,7 +215,6 @@ class CheckSetupControllerTest extends TestCase {
 		$expected = new DataResponse(
 			[
 				'reverseProxyDocs' => 'reverse-proxy-doc-link',
-				'areWebauthnExtensionsEnabled' => false,
 				'isMysqlUsedWithoutUTF8MB4' => false,
 				'isEnoughTempSpaceAvailableIfS3PrimaryStorageIsUsed' => true,
 				'reverseProxyGeneratedURL' => 'https://server/index.php',
