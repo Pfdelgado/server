@@ -274,6 +274,10 @@ class Connection extends PrimaryReadReplicaConnection {
 			// Read to a table that was previously written to
 			// While this might not necessarily mean that we did a read after write it is an indication for a code path to check
 			$this->logger->debug('dirty table reads: ' . $sql, ['tables' => $this->tableDirtyWrites, 'reads' => $tables, 'exception' => new \Exception()]);
+			// To prevent a dirty read on a replica that is slightly out of sync, we
+			// switch back to the primary. This is detrimental for performance but
+			// safer for consistency.
+			$this->ensureConnectedToPrimary();
 		}
 
 		$sql = $this->replaceTablePrefix($sql);
