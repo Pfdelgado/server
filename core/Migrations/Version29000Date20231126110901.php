@@ -44,21 +44,19 @@ class Version29000Date20231126110901 extends SimpleMigrationStep {
 		}
 
 		$table = $schema->getTable('appconfig');
-		if ($table->hasColumn('lazy')) {
-			return null;
+		if (!$table->hasColumn('lazy')) {
+			// type=2 means value is typed as MIXED
+			$table->addColumn('type', Types::INTEGER, ['notnull' => true, 'default' => 2]);
+			$table->addColumn('lazy', Types::BOOLEAN, ['notnull' => false, 'default' => false]);
 		}
-
-		// type=2 means value is typed as MIXED
-		$table->addColumn('type', Types::INTEGER, ['notnull' => true, 'default' => 2]);
-		$table->addColumn('lazy', Types::BOOLEAN, ['notnull' => false, 'default' => false]);
 
 		if ($table->hasIndex('appconfig_config_key_index')) {
 			$table->dropIndex('appconfig_config_key_index');
 		}
 
-		$table->addIndex(['lazy'], 'ac_lazy_i');
-		$table->addIndex(['appid', 'lazy'], 'ac_app_lazy_i');
-		$table->addIndex(['appid', 'lazy', 'configkey'], 'ac_app_lazy_key_i');
+		if (!$table->hasIndex('ac_lazy_i')) {
+			$table->addIndex(['lazy'], 'ac_lazy_i');
+		}
 
 		return $schema;
 	}
