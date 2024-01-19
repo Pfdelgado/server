@@ -101,7 +101,7 @@
 		<template v-else>
 			<transition name="fade" mode="out-in">
 				<NcNoteCard type="warning" :title="t('core', 'Login form is disabled.')">
-					{{ t('core', 'Please contact your administrator.') }}
+					{{ t('core', 'Please  CON tu contact your administrator.') }}
 				</NcNoteCard>
 			</transition>
 		</template>
